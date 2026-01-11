@@ -19,26 +19,9 @@ jobs:
           sudo apt install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
           pip3 install --user --upgrade Cython==0.29.33 virtualenv buildozer
 
-      - name: Unzip Stage Data
-        run: |
-          # Create data folder if it doesn't exist
-          mkdir -p data
-          if [ -f "data.zip" ]; then
-            # -o overwrites existing files without asking
-            unzip -o data.zip -d .
-          fi
-          
-          # Fix permissions so Buildozer can move the files
-          chmod -R 777 data/
-          
-          # DIAGNOSTIC: This will show in your logs exactly what is inside the data folder
-          echo "Listing content of data folder:"
-          ls -R data/
-
       - name: Build with Buildozer
         run: |
-          # REMOVED the clean command to avoid the FileNotFoundError
-          # Just run the build directly
+          # We removed the Unzip step. Buildozer will use the uploaded folders.
           ~/.local/bin/buildozer -v android debug
         env:
           APP_ANDROID_ACCEPT_SDK_LICENSE: "True"

@@ -4,7 +4,7 @@
 title = German Artical Trainer
 
 # (str) Package name
-package.name = artical-trainer
+package.name = articaltrainer
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.artical
@@ -113,7 +113,7 @@ android.permissions = INTERNET,ACCESS_NETWORK_STATE
 #android.sdk = 20
 
 # (str) Android NDK version to use
-#android.ndk = 23b
+android.ndk = 23b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
@@ -204,8 +204,9 @@ android.accept_sdk_license = True
 #android.add_resources =
 
 # (list) Gradle dependencies to add
-android.gradle_dependencies = com.google.android.gms:play-services-ads:22.6.0
+android.gradle_dependencies = com.google.android.gms:play-services-ads:20.6.0
 
+android.build_tools_version = 33.0.0
 # (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
 # contains an 'androidx' package, or any package from Kotlin source.
 # android.enable_androidx requires android.api >= 28

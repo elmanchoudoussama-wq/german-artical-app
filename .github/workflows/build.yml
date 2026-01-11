@@ -37,9 +37,8 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # Clean old failed attempts to prevent cache issues
-          ~/.local/bin/buildozer android clean
-          # Run the build
+          # REMOVED the clean command to avoid the FileNotFoundError
+          # Just run the build directly
           ~/.local/bin/buildozer -v android debug
         env:
           APP_ANDROID_ACCEPT_SDK_LICENSE: "True"

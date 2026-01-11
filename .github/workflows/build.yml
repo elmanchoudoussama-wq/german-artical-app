@@ -3,10 +3,28 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04 # Using a stable version of Ubuntu
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Buildozer Action
-        uses: ArtemSBulgakov/buildozer-action@v1
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+          pip3 install --user --upgrade Cython==0.29.33 virtualenv buildozer
+
+      - name: Build with Buildozer
+        run: |
+          # If you have a zip file for your data, unzip it here:
+          # unzip data.zip 
+          
+          # Run the build
+          ~/.local/bin/buildozer -v android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
-          command: buildozer android debug
+          name: my-app-apk
+          path: bin/*.apk

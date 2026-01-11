@@ -1,13 +1,11 @@
-name: Build APK
+name: Build App
 on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-22.04 # Using a stable version of Ubuntu
-
+    runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: |
@@ -15,16 +13,20 @@ jobs:
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
           pip3 install --user --upgrade Cython==0.29.33 virtualenv buildozer
 
-      - name: Build with Buildozer
+      - name: Unzip Data
         run: |
-          # If you have a zip file for your data, unzip it here:
-          # unzip data.zip 
-          
-          # Run the build
+          if [ -f "data.zip" ]; then
+            unzip data.zip -d .
+          fi
+
+      - name: Run Buildozer
+        run: |
           ~/.local/bin/buildozer -v android debug
+        env:
+          ACCEPT_SDK_LICENSE: "True"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: my-app-apk
+          name: App-Package
           path: bin/*.apk

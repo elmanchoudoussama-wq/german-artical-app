@@ -38,7 +38,7 @@ version = 0.1
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
 
-requirements = python3, kivy==2.3.0, kivymd==1.2.0, pillow, arabic_reshaper, python-bidi, kivmob, android
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,pillow,arabic_reshaper,python-bidi,kivmob,android
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -97,7 +97,7 @@ fullscreen = 0
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
 
-android.permissions = INTERNET, ACCESS_NETWORK_STATE
+android.permissions = INTERNET,ACCESS_NETWORK_STATE
 
 
 # (list) features (adds uses-feature -tags to manifest)
@@ -204,12 +204,12 @@ android.accept_sdk_license = True
 #android.add_resources =
 
 # (list) Gradle dependencies to add
-android.gradle_dependencies = = com.google.android.gms:play-services-ads:22.6.0
+android.gradle_dependencies = com.google.android.gms:play-services-ads:22.6.0
 
 # (bool) Enable AndroidX support. Enable when 'android.gradle_dependencies'
 # contains an 'androidx' package, or any package from Kotlin source.
 # android.enable_androidx requires android.api >= 28
-#android.enable_androidx = True
+android.enable_androidx = True
 
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option
@@ -266,7 +266,7 @@ android.gradle_dependencies = = com.google.android.gms:play-services-ads:22.6.0
 # 4. Add your App ID to the manifest
 # Replace ca-app-pub-3940256099942544~3347511713 with YOUR ACTUAL ADMOB APP ID
 
-android.meta_data = com.google.android.gms.ads.APPLICATION_ID= ca-app-pub-9298331856947532~1106493604
+android.meta_data = com.google.android.gms.ads.APPLICATION_ID=ca-app-pub-9298331856947532~1106493604
 
 # (list) Android library project to add (will be added in the
 # project.properties automatically.)
@@ -289,7 +289,7 @@ android.meta_data = com.google.android.gms.ads.APPLICATION_ID= ca-app-pub-929833
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
-android.archs = arm64-v8a 
+android.archs = arm64-v8a
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing

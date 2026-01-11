@@ -113,7 +113,7 @@ android.permissions = INTERNET,ACCESS_NETWORK_STATE
 #android.sdk = 20
 
 # (str) Android NDK version to use
-android.ndk = 23b
+android.ndk = 25b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
@@ -219,8 +219,8 @@ android.enable_androidx = True
 
 # (list) Gradle repositories to add {can be necessary for some android.gradle_dependencies}
 # please enclose in double quotes 
-# e.g. android.gradle_repositories = "maven { url 'https://kotlin.bintray.com/ktor' }"
-#android.add_gradle_repositories =
+#e.g. android.gradle_repositories = "maven { url 'https://kotlin.bintray.com/ktor' }"
+android.gradle_repositories = google(),mavenCentral()
 
 # (list) packaging options to add 
 # see https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.PackagingOptions.html

@@ -13,7 +13,7 @@ package.domain = org.artical
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,json,ttf
+source.include_exts = py,png,jpg,kv,json,ttf
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -38,7 +38,7 @@ version = 0.1
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
 
-requirements = python3, kivy, kivymd, kivmob, android, pyjnius,https://github.com/kivymd/kivyMD/archive/master.zip,materialyoucolor,exceptiongroup,asyncgui,asynckivy,pillow
+requirements = python3, kivy==2.3.0, kivymd==1.2.0, pillow, arabic_reshaper, python-bidi, kivmob, android
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -266,7 +266,7 @@ android.gradle_dependencies = = com.google.android.gms:play-services-ads:22.6.0
 # 4. Add your App ID to the manifest
 # Replace ca-app-pub-3940256099942544~3347511713 with YOUR ACTUAL ADMOB APP ID
 
-android.meta_data = com.google.android.gms.ads.APPLICATION_ID=ca-app-pub-3940256099942544~3347511713 
+android.meta_data = com.google.android.gms.ads.APPLICATION_ID= ca-app-pub-9298331856947532~1106493604
 
 # (list) Android library project to add (will be added in the
 # project.properties automatically.)
@@ -289,7 +289,7 @@ android.meta_data = com.google.android.gms.ads.APPLICATION_ID=ca-app-pub-3940256
 
 # (list) The Android archs to build for, choices: armeabi-v7a, arm64-v8a, x86, x86_64
 # In past, was `android.arch` as we weren't supporting builds for multiple archs at the same time.
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a 
 
 # (int) overrides automatic versionCode computation (used in build.gradle)
 # this is not the same as app version and should only be edited if you know what you're doing

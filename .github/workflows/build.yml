@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          # Critical fix for libunwind conflict on Ubuntu 22.04
+          # Critical fix for libunwind conflict
           sudo apt-get remove -y libunwind-14-dev || true
           
           sudo apt install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev \
@@ -30,8 +30,10 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          # Clean the old corrupted SDL files first
-          buildozer android clean
+          # Only run clean if buildozer has been initialized before (prevents FileNotFoundError)
+          if [ -d ".buildozer" ]; then buildozer android clean; fi
+          
+          # Run the main build
           buildozer -v android debug
         env:
           APP_ANDROID_ACCEPT_SDK_LICENSE: "True"

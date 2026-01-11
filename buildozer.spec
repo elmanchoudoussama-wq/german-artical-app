@@ -4,10 +4,10 @@
 title = German Artical Trainer
 
 # (str) Package name
-package.name = Artical
+package.name = artical-trainer
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = org.Artical
+package.domain = org.artical
 
 # (str) Source code where the main.py live
 source.dir = .

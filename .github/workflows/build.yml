@@ -23,18 +23,14 @@ jobs:
           libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev \
           libunwind-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
           build-essential ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
-          libltdl-dev
+          libltdl-dev python3-dev
           
           pip3 install --user --upgrade Cython==0.29.33 virtualenv buildozer
-
-      - name: Prepare Assets
-        run: |
-          chmod -R 755 data/ || echo "Data folder not found, skipping chmod"
 
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          # Clean old broken files and build
+          # Clean the old corrupted SDL files first
           buildozer android clean
           buildozer -v android debug
         env:

@@ -21,16 +21,27 @@ jobs:
 
       - name: Unzip Stage Data
         run: |
+          # Create data folder if it doesn't exist
+          mkdir -p data
           if [ -f "data.zip" ]; then
-            unzip data.zip -d .
+            # -o overwrites existing files without asking
+            unzip -o data.zip -d .
           fi
+          
+          # Fix permissions so Buildozer can move the files
+          chmod -R 777 data/
+          
+          # DIAGNOSTIC: This will show in your logs exactly what is inside the data folder
+          echo "Listing content of data folder:"
+          ls -R data/
 
       - name: Build with Buildozer
         run: |
-          # Use the --accept-sdk-license flag to prevent stopping for prompts
+          # Clean old failed attempts to prevent cache issues
+          ~/.local/bin/buildozer android clean
+          # Run the build
           ~/.local/bin/buildozer -v android debug
         env:
-          # This tells the build to automatically accept Android licenses
           APP_ANDROID_ACCEPT_SDK_LICENSE: "True"
 
       - name: Upload APK

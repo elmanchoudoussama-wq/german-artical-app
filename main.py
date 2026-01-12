@@ -378,7 +378,7 @@ class GermanArticleTrainer(MDApp):
         for i in range(1, 101):
             is_locked = i > self.unlocked_stages
             btn = MDFillRoundFlatButton(
-                text=f"Stage {i}" if not is_locked else f"Stage {i} (Locked)",
+                text=f"Stage {i}" if not is_locked else f"S{i} Locked",
                 size_hint=(1, None),
                 disabled=is_locked,
                 md_bg_color=self.theme_cls.primary_color if not is_locked else (0.7, 0.7, 0.7, 1),

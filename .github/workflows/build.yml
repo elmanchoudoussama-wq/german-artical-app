@@ -19,21 +19,26 @@ jobs:
           # Critical fix for libunwind conflict
           sudo apt-get remove -y libunwind-14-dev || true
           
+          # Added libharfbuzz-dev and libfribidi-dev for Arabic support
           sudo apt install -y git zip unzip python3-pip autoconf libtool pkg-config zlib1g-dev \
           libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev \
           libunwind-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
           build-essential ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev \
-          libltdl-dev python3-dev
+          libltdl-dev python3-dev libharfbuzz-dev libfribidi-dev
           
           pip3 install --user --upgrade Cython==0.29.33 virtualenv buildozer
 
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          # Only run clean if buildozer has been initialized before (prevents FileNotFoundError)
-          if [ -d ".buildozer" ]; then buildozer android clean; fi
+          # Safety check: buildozer help ensures the directory structure exists
+          buildozer help
           
-          # Run the main build
+          # Clean only if the directory exists to avoid the crash we had earlier
+          if [ -d ".buildozer/android/platform/python-for-android" ]; then 
+              buildozer android clean
+          fi
+          
           buildozer -v android debug
         env:
           APP_ANDROID_ACCEPT_SDK_LICENSE: "True"
